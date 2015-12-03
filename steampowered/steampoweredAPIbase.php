@@ -7,15 +7,22 @@
  */
 
 namespace steampoweredAPI;
-include_once('steampoweredAPIinterface.php');
+include_once('SteampoweredAPIinterface.php');
 
-class steampoweredAPIbase implements steampoweredAPIinterface {
+abstract class SteampoweredAPIbase implements SteampoweredAPIinterface {
     //http://api.steampowered.com/<interface>/<method>/<method_version>/
     var $url = "http://api.steampowered.com";
-    var $interface = 'ISteamWebAPIUtil';
-    var $method = 'GetSupportedAPIList';
+    var $interface;
+    var $method;
     var $method_version = 1;
     var $parameters = array();
+
+    /**
+     * steampoweredAPIbase constructor.
+     */
+    public function __construct()
+    {
+    }
 
     /**
      * @return array
@@ -28,7 +35,7 @@ class steampoweredAPIbase implements steampoweredAPIinterface {
     /**
      * @param array $parameters
      */
-    public function setParameters($parameters)
+    protected function setParameters($parameters)
     {
         $this->parameters = $parameters;
     }
@@ -103,7 +110,9 @@ class steampoweredAPIbase implements steampoweredAPIinterface {
         if (!empty($this->parameters)) {
             $requestString .= "?";
             foreach ($this->parameters as $key => $val) {
-                $requestString .= $key . "=" . $val . '&';
+                if (!empty($val)) {
+                    $requestString .= $key . "=" . $val . '&';
+                }
             }
         }
         return $requestString;
@@ -112,9 +121,10 @@ class steampoweredAPIbase implements steampoweredAPIinterface {
     function doRequest()
     {
         $reference = $this->getRequestString();
-        $ref = curl_init($reference);
-        $res = curl_exec($ref);
-        curl_close($ref);
+        $ch = curl_init($reference);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $res = curl_exec($ch);
+        curl_close($ch);
         return $res;
     }
 }

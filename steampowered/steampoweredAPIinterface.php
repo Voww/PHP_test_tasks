@@ -9,7 +9,7 @@
 namespace steampoweredAPI;
 
 
-interface steampoweredAPIinterface
+interface SteampoweredAPIinterface
 {
     function doRequest();
 }
