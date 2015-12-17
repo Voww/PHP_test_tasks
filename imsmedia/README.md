@@ -97,28 +97,7 @@ To verify the 'ims_media_stock' database import please type in an MySQL console 
 * SELECT * FROM ims_media_stock.currency;
 * SELECT * FROM ims_media_stock.measurement;
 
-If the import procedure was correct you can see the tables filled with parsed values, as in examples below listed:
-
-mysql> SELECT * FROM ims_media_stock.currency;
-+----+------+
-| id | code |
-+----+------+
-|  1 | грн  |
-+----+------+
-1 row in set (0.00 sec)
-
-mysql> SELECT * FROM ims_media_stock.measurement;
-+----+------+
-| id | code |
-+----+------+
-|  2 | кг   |
-|  1 | м.п. |
-|  4 | м2   |
-|  3 | шт   |
-+----+------+
-4 rows in set (0.00 sec)
-
-mysql>
+If the import procedure was correct you can see the tables filled with parsed values.
 
 #6. Summary
 
