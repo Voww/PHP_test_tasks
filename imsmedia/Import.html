@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Import an XML file</title>
+</head>
+<body>
+<h1 style="background-color: chartreuse">IMS Media test task</h1>
+<a href="/imsmedia"><button>Back</button></a><hr>
+    <form name="xml_import" method="post" enctype="multipart/form-data" action="script/XMLImportScript.php">
+        <input type="hidden" name="MAX_FILE_SIZE" value="300000" />
+        <input type="file" name="xml_file">
+        <input type="submit" title="Load an XML file">
+    </form>
+</body>
+</html>
